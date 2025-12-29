@@ -1,0 +1,21 @@
+{
+  "name": "pokedex-api",
+  "version": "1.0.0",
+  "description": "PokeDex API with CI/CD",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest --coverage",
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "axios": "^1.6.0",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "nodemon": "^3.0.2"
+  }
+}

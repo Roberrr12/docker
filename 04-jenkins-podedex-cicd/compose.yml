@@ -1,0 +1,23 @@
+services:
+  jenkins:
+    build: ./jenkins
+    container_name: jenkins
+    privileged: true
+    user: root
+    ports:
+      - "8080:8080"      # UI de Jenkins
+      - "50000:50000"    # Agentes de Jenkins
+    volumes:
+      - jenkins-data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock  # Docker-in-Docker
+    environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    networks:
+      - jenkins-net
+
+volumes:
+  jenkins-data:
+
+networks:
+  jenkins-net:
+    driver: bridge
