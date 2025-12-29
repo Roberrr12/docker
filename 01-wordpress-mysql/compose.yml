@@ -1,0 +1,36 @@
+services:
+  wordpress:
+    image: wordpress:6.9.0-php8.1-apache
+    ports:
+      - "8043:80"
+    networks:
+      - blog-network
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+      WORDPRESS_DB_USER: ${MYSQL_USER}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - wp-data:/var/www/html
+
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - blog-network
+
+volumes:
+  db-data:
+  wp-data:
+
+networks:
+  blog-network:
+    driver: bridge
