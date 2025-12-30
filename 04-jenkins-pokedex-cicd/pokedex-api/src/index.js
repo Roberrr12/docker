@@ -12,7 +12,7 @@ app.use(express.json());
 app.get('/health', (req, res) => {
   res.status(200).json({ 
     status: 'OK', 
-    message: 'PokeDex API is running!',
+    message: 'Bienvenido a la PokeDex API v2.0',
     timestamp: new Date().toISOString()
   });
 });
